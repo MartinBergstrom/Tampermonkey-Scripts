@@ -21,7 +21,6 @@ $(document).ready(function() {
 });
 
 $(document).keydown(function(e) {
-    console.log('index is' + index);
     var code = e.keyCode || e.which;
     if ((e.shiftKey && code === 9) || code === 38) {
         e.preventDefault();
