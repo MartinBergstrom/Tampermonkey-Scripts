@@ -11,14 +11,15 @@
 
 
 $(document).ready(function() {
-    $('.no #talk_roster').hide();
+    hideShit();
     replaceHangoutButtons();
-    $('.no .nM .n6 span.CJ').click();
-
-    //appendToggleMenu();
-    //moveIntoNewParentDiv();
     addSideNavOverlay();
 });
+
+function hideShit() {
+    $('.no #talk_roster').hide();
+    $('.no .nM .n6 span.CJ').click();
+}
 
 function replaceHangoutButtons() {
     var selector = '.J-KU-Jg.J-KU-Jg-Zc.aj5';
@@ -32,33 +33,8 @@ function replaceHangoutButtons() {
     });
 
     $('.settingsButton').click(function() {
-        /*Set the width of the side navigation to 250px */
         $("#mySidenav").css("width","250px");
     });
-
-    $('#mySidenav .closebn').click(function() {
-        /* Set the width of the side navigation to 0 */
-        $("#mySidenav").css("width","0px");
-        alert('hello');
-    });
-}
-
-function appendToggleMenu() {
-    $('body').append(
-        $('<div>', { id: 'settingsToggleBar' }).append(
-            $('<div>', { id: 'panelToggleHandle', text: 'Customize look' }).click(function() {
-                var panel = $('#settingsToggleBar');
-
-                if(panel.hasClass('expanded')) {
-                    panel.animate({'right':'-200px'}, 200);
-                    panel.removeClass('expanded');
-                } else {
-                    panel.animate({'right':0}, 200);
-                    panel.addClass('expanded');
-                }
-            })
-        )
-    );
 }
 
 function addSideNavOverlay() {
@@ -97,6 +73,10 @@ function addSideNavOverlay() {
     'right': '25px',
     'font-size': '36px',
     'margin-left': '50px'
+    });
+
+    $('.sidenav .closebtn').click(function() {
+       $("#mySidenav").css("width","0px");
     });
 }
 
