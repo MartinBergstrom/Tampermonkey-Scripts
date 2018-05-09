@@ -9,12 +9,13 @@
 // @require http://code.jquery.com/jquery-latest.js
 // ==/UserScript==
 
+
 $(document).ready(function() {
     $('.no #talk_roster').hide();
     replaceHangoutButtons();
     $('.no .nM .n6 span.CJ').click();
 
-    appendToggleMenu();
+    //appendToggleMenu();
     //moveIntoNewParentDiv();
     addSideNavOverlay();
 });
@@ -24,9 +25,21 @@ function replaceHangoutButtons() {
     $(selector).empty();
     $(selector).html("<button class='settingsButton'>Settings</button>");
     $('.settingsButton').css({
-        'background-color': '#4cc4bc',
+        'background-color': '#008CBA',
+        'color' : 'white',
         'padding': '5px 10px',
-        'font-size': '16px'
+        'font-size': '14px'
+    });
+
+    $('.settingsButton').click(function() {
+        /*Set the width of the side navigation to 250px */
+        $("#mySidenav").css("width","250px");
+    });
+
+    $('#mySidenav .closebn').click(function() {
+        /* Set the width of the side navigation to 0 */
+        $("#mySidenav").css("width","0px");
+        alert('hello');
     });
 }
 
@@ -48,36 +61,6 @@ function appendToggleMenu() {
     );
 }
 
-function moveIntoNewParentDiv() {
-    //$('.aAX').append('<div id="newDiv"></div>');
-    //while( $('.aAX').childNodes.length > 0) {
-    //    $('.newDiv').appendChild($('.aAX').childNodes[0]);
-    //}
-    //$('.aAU').wrapAll('<div id="newDiv"></div>');
-    //var div = document.createElement("div");
-    //div.id = "wrap";
-    //$('.aAU').wrapAll('<div id="newDiv"></div>');
-    // Move the body's children into this wrapper
-    //while (document.body.firstChild)
-    //{
-     //   div.appendChild(document.body.firstChild);
-    //}
-
-    // Append the wrapper to the body
-    //document.body.appendChild(div);
-}
-
-
-/* Set the width of the side navigation to 250px */
-function openNav() {
-    $("mySidenav").css("style.width","250px");
-}
-
-/* Set the width of the side navigation to 0 */
-function closeNav() {
-    $("mySidenav").css("style.width","0px");
-}
-
 function addSideNavOverlay() {
     $('.aAX').append(htmlForSideNav);
 
@@ -85,12 +68,12 @@ function addSideNavOverlay() {
     'height': '100%',
     'width': '0',
     'position': 'fixed',
-    'z-index': '1',
+    'z-index': '5',
     'top': '0',
     'left': '0',
-    'background-color': '#111',
+    'background-color': '#ccff33',
     'overflow-x': 'hidden',
-    'padding-top': '60px',
+    'padding-top': '90px',
     'transition': '0.5s'
     });
 
@@ -110,6 +93,7 @@ function addSideNavOverlay() {
     $('.sidenav .closebtn').css({
     'position': 'absolute',
     'top': '0',
+    'cursor': 'pointer',
     'right': '25px',
     'font-size': '36px',
     'margin-left': '50px'
@@ -118,11 +102,9 @@ function addSideNavOverlay() {
 
 var htmlForSideNav = `
 <div id="mySidenav" class="sidenav">
-<a href="javascript:void(0)" class="closebtn"
-onclick="closeNav()">&times;</a>
+<span class="closebtn">&times;</span>
 <a href="#">About</a>
 <a href="#">Services</a>
 <a href="#">Clients</a>
-<a href="#">Contact</a> </div>
-<span onclick="openNav()">open</span>`;
+<a href="#">Contact</a> </div>`;
 
