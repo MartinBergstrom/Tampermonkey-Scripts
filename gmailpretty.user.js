@@ -9,6 +9,8 @@
 // @require http://code.jquery.com/jquery-latest.js
 // ==/UserScript==
 
+var hangOutLoginIdentifier = '.no #talk_roster';
+var hangOutButtonsBar = '.no .nM .n6 span.CJ';
 
 $(document).ready(function() {
     hideShit();
@@ -17,8 +19,8 @@ $(document).ready(function() {
 });
 
 function hideShit() {
-    $('.no #talk_roster').hide();
-    $('.no .nM .n6 span.CJ').click();
+    $(hangOutLoginIdentifier).hide();
+    $(hangOutButtonsBar).click();
 }
 
 function replaceHangoutButtons() {
@@ -26,7 +28,7 @@ function replaceHangoutButtons() {
     $(selector).empty();
     $(selector).html("<button class='settingsButton'>Settings</button>");
     $('.settingsButton').css({
-        'background-color': '#008CBA',
+        'background-color': '#d14836',
         'color' : 'white',
         'padding': '5px 10px',
         'font-size': '14px'
@@ -47,23 +49,33 @@ function addSideNavOverlay() {
     'z-index': '5',
     'top': '0',
     'left': '0',
-    'background-color': '#ccff33',
+    'background-color': '#d14836',
     'overflow-x': 'hidden',
     'padding-top': '90px',
     'transition': '0.5s'
     });
 
-    $('.sidenav a').css({
+    $('.sidenav a, button.textBtn').css({
     'padding': '8px 8px 8px 32px',
     'text-decoration': 'none',
     'font-size': '25px',
-    'color': '#818181',
+    'color': '#eae8e8',
     'display': 'block',
     'transition': '0.3s'
     });
 
     $('.sidenav a:hover').css({
     'color': '#f1f1f1'
+    });
+
+    $('.sidenav button.textBtn').css({
+    'background': 'none',
+    'border': 'none',
+    'font-size': '22px'
+    });
+
+    $('.sidenav button.textBtn#toggleHideBtn').css({
+    'color': '#eae8e8'
     });
 
     $('.sidenav .closebtn').css({
@@ -78,6 +90,10 @@ function addSideNavOverlay() {
     $('.sidenav .closebtn').click(function() {
        $("#mySidenav").css("width","0px");
     });
+
+    $('.sidenav button.textBtn#toggleHideBtn').click(function() {
+
+    });
 }
 
 var htmlForSideNav = `
@@ -86,5 +102,6 @@ var htmlForSideNav = `
 <a href="#">About</a>
 <a href="#">Services</a>
 <a href="#">Clients</a>
-<a href="#">Contact</a> </div>`;
-
+<a href="#">Contact</a>
+<button class="textBtn" id="toggleHideBtn">Toggle hide on/off</button>
+</div>`;
