@@ -11,6 +11,7 @@
 
 var hangOutLoginIdentifier = '.no #talk_roster';
 var hangOutButtonsBar = '.no .nM .n6 span.CJ';
+var notifClock = 'div.gb_Nc.gb_9c.gb_R.gb_Oc div.gb_Qc a';
 
 $(document).ready(function() {
     hideShit();
@@ -21,6 +22,13 @@ $(document).ready(function() {
 function hideShit() {
     $(hangOutLoginIdentifier).hide();
     $(hangOutButtonsBar).click();
+    $(notifClock).hide();
+}
+
+function showHiddenShit() {
+    $(hangOutLoginIdentifier).show();
+    $(hangOutButtonsBar).click();
+    $(notifClock).show();
 }
 
 function replaceHangoutButtons() {
@@ -35,7 +43,7 @@ function replaceHangoutButtons() {
     });
 
     $('.settingsButton').click(function() {
-        $("#mySidenav").css("width","250px");
+        $("#mySidenav").css("width","260px");
     });
 }
 
@@ -58,7 +66,7 @@ function addSideNavOverlay() {
     $('.sidenav a, button.textBtn').css({
     'padding': '8px 8px 8px 32px',
     'text-decoration': 'none',
-    'font-size': '25px',
+    'font-size': '22px',
     'color': '#eae8e8',
     'display': 'block',
     'transition': '0.3s'
@@ -71,7 +79,7 @@ function addSideNavOverlay() {
     $('.sidenav button.textBtn').css({
     'background': 'none',
     'border': 'none',
-    'font-size': '22px'
+    'font-size': '20px'
     });
 
     $('.sidenav button.textBtn#toggleHideBtn').css({
@@ -92,7 +100,13 @@ function addSideNavOverlay() {
     });
 
     $('.sidenav button.textBtn#toggleHideBtn').click(function() {
-
+        if($(notifClock).is(":visible")) {
+            hideShit();
+            $('.sidenav button.textBtn#toggleHideBtn').text('Show elements');
+        } else {
+            showHiddenShit();
+            $('.sidenav button.textBtn#toggleHideBtn').text('Hide elements');
+        }
     });
 }
 
@@ -103,5 +117,5 @@ var htmlForSideNav = `
 <a href="#">Services</a>
 <a href="#">Clients</a>
 <a href="#">Contact</a>
-<button class="textBtn" id="toggleHideBtn">Toggle hide on/off</button>
+<button class="textBtn" id="toggleHideBtn">Show elements</button>
 </div>`;
