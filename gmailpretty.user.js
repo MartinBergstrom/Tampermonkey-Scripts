@@ -2,19 +2,21 @@
 // @name         GmailPrettify
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  try to take over the world!
+// @description  gmail v2
 // @author       You
 // @match        https://mail.google.com/*
 // @grant        none
 // @require http://code.jquery.com/jquery-latest.js
 // ==/UserScript==
 
-var hangOutLoginIdentifier = '.no #talk_roster';
+var hangOutLoginIdentifier = '#talk_roster';
 var hangOutButtonsBar = '.no .nM .n6 span.CJ';
-var notifClock = 'div.gb_Nc.gb_9c.gb_R.gb_Oc div.gb_Qc a';
+var notifClock = 'div.gb_Pf.gb_Og div.gb_Hc.gb_Og.gb_R div.gb_Pc.gb_bd.gb_R.gb_Qc div.gb_Sc';
+var dragElementDiv = 'div.ajl.aib.aZ6.aji';
 
 $(document).ready(function() {
     hideShit();
+    animateDragBar();
     replaceHangoutButtons();
     addSideNavOverlay();
 });
@@ -23,6 +25,12 @@ function hideShit() {
     $(hangOutLoginIdentifier).hide();
     $(hangOutButtonsBar).click();
     $(notifClock).hide();
+}
+
+function animateDragBar() {
+     $(dragElementDiv).animate({
+         height:'800px'
+     }, 2500);
 }
 
 function showHiddenShit() {
@@ -113,9 +121,5 @@ function addSideNavOverlay() {
 var htmlForSideNav = `
 <div id="mySidenav" class="sidenav">
 <span class="closebtn">&times;</span>
-<a href="#">About</a>
-<a href="#">Services</a>
-<a href="#">Clients</a>
-<a href="#">Contact</a>
 <button class="textBtn" id="toggleHideBtn">Show elements</button>
 </div>`;
