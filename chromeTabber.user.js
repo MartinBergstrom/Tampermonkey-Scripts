@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Chrome Tabber Extreme Edition
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  tab like crazy my dude
 // @author       MonsterMartin
 // @match        https://www.google.se/*
@@ -15,7 +15,7 @@ var results;
 
 $(document).ready(function() {
     index = 0;
-    results = $('#ires .g h3 a').toArray();
+    results = $('#rso .bkWMgd .g .r > a:first-child').toArray();
     maxIndex = results.length -1;
     $(results[0]).focus();
 });
@@ -44,3 +44,4 @@ function tabPressBackward() {
         $(results[index]).focus();
     }
 }
+
